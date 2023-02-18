@@ -1,0 +1,67 @@
+<div *ngIf="currentCar" class="container-fluid">
+    <div class="">
+      <div class="">
+        <h1 class="display-3">Update Car</h1>
+      </div>
+      <form [formGroup]="carUpdateForm">
+        <div class="row">
+            <div class="col-md-4">
+                <strong>ID:</strong>
+            </div>
+            <div class="col-md-8">
+                <input class="form-control text-center" [placeholder]="currentCar.carId" disabled />
+            </div>
+          <div class="col-lg-3 col-sm-12">
+            <div class="mb-3">
+              <label for="brandId" class="form-label">Select Brand</label>
+              <select id="brandId" class="form-select" formControlName="brandId">
+                <option *ngFor="let brand of brands" [ngValue]="brand.id">
+                  {{ brand.name }}
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class="col-lg-3 col-sm-12">
+            <div class="mb-3">
+              <label for="colorId" class="form-label">Select Colour</label>
+              <select id="colorId" formControlName="colorId" class="form-select">
+                <option *ngFor="let color of colors" [ngValue]="color.id">
+                  {{ color.name }}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <div class="mb-3">
+              <label for="modelYear" class="form-label">Model Year</label>
+              <input id="modelYear" type="number" class="form-control" placeholder="Model Yılı"
+                     formControlName="modelYear"/>
+            </div>
+          </div>
+          <div class="col-6">
+            <label for="dailyPrice" class="form-label">Daily Price</label>
+            <div class="input-group md-3">
+              <span class="input-group-text">₺</span>
+              <input id="dailyPrice" type="number" class="form-control" placeholder="Günlük Ücret"
+                     formControlName="dailyPrice"/>
+            </div>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="description" class="form-label">Description</label>
+          <input id="description" type="text" class="form-control" placeholder="Model Adı"
+                    formControlName="description" />
+        </div>
+      </form>
+      <div class="">
+        <div class="btn-group float-end" role="group" aria-label="Button Group">
+          <button (click)="update()" class="btn btn-outline-dark">
+            Güncelle
+          </button>
+          <button routerLink="admin/car/manager" (click)="closeCarUpdateModal()" type="button" class="btn btn-danger">İptal</button>
+        </div>
+      </div>
+    </div>
+  </div>

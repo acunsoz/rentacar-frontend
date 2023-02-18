@@ -1,0 +1,47 @@
+<div *ngIf="colors" class="cont">
+    <div class="card">
+        <div class="card-header text-center bg-dark bg-gradient text-light">
+            <h3>Renk Yönetimi</h3>
+            ({{colors.length}} renk listelendi)
+        </div>
+        <div class="card-body">
+            <ul class="list-group">
+                <li class="list-group-item bg-warning bg-gradient text-center">
+                    <div class="row align-items-center">
+                        <div class="col-md-1">
+                            <strong>ID</strong>
+                        </div>
+                        <div class="col-md-8">
+                            <strong>Renk Adı</strong>
+                        </div>
+                        <div class="col-md-3">
+                            <button routerLink="/colors/add" type="button" class="btn btn-success float-end">
+                                Renk ekle
+                            </button>
+                        </div>
+                    </div>
+                </li>
+                <li *ngFor="let color of colors" class="list-group-item list-group-item-action text-center">
+                    <div class="row align-items-center">
+                        <div class="col-md-1">
+                            {{color.id}}
+                        </div>
+                        <div class="col-md-8">
+                            {{color.name}}
+                        </div>
+                        <div class="col-md-3">
+                            <div class="btn-group float-end">
+                                <button (click)="showColorUpdateModal(color)" type="button" class="btn btn-dark px-3">
+                                    Güncelle
+                                </button>
+                                <button (click)="showColorDeleteModal(color)" type="button" class="btn btn-danger px-3">
+                                    Sil
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

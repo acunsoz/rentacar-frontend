@@ -13,6 +13,7 @@ export class ColorComponent implements OnInit {
   colors:Color[] = []
   currentColor?:Color;
   dataLoaded = false;
+  filterText="";
 
   constructor(private colorService:ColorService) { }
 

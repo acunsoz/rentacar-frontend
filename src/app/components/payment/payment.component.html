@@ -1,0 +1,65 @@
+<!-- <h2 *ngIf="rentalTrue" routerLink="/cars"> Yönlendirildin</h2> -->
+<meta *ngIf="rentalTrue" http-equiv="refresh" content="6;url=http://localhost:4200/cars">
+
+<div class="container bg-light d-md-flex align-items-center">
+    <div class="card box1 shadow-sm p-md-5 p-md-5 p-4">
+        <div class="fw-bolder mb-4"><span class="fas fa-dollar-sign"></span><span class="ps-1">Bilgi Fişi</span></div>
+        <div class="d-flex flex-column" >
+            
+            <div class="d-flex align-items-center justify-content-between text mb-4"> <span>{{days}} Günlük Tutar: </span> <span class="fas fa-dollar-sign"><span class="ps-1">{{total | currency:"₺"}}</span></span> </div>
+            <div class="border-bottom mb-4"></div>
+            <div class="d-flex flex-column mb-4"> <span class="far fa-file-alt text" ><span class="ps-2">Araba Modeli:</span></span> <span class="ps-3">{{carDetails[0].carName}}</span> </div>
+            <div class="d-flex flex-column mb-3"> <span class="far fa-calendar-alt text"><span class="ps-2">Alış Tarihi:</span></span> <span class="ps-3">{{rentDate}}</span> </div>
+            <div class="d-flex flex-column mb-5"> <span class="far fa-calendar-alt text"><span class="ps-2">Iade Tarihi:</span></span> <span class="ps-3">{{returnDate}}</span> </div>
+            <div class="d-flex align-items-center justify-content-between text mt-3">
+                <div class="d-flex flex-column text"> <span>Customer Support:</span> <span>online chat 24/7</span> </div>
+            </div>
+        </div>
+    </div>
+    <div class="card box2 shadow-sm">
+        <div class="d-flex align-items-center justify-content-between p-md-5 p-4"> <span class="h5 fw-bold m-0">Ödeme Ekranı</span>
+            <div class="btn btn-primary bar"><span class="fas fa-bars"></span></div>
+        </div>
+        <ul class="nav nav-tabs mb-3 px-md-4 px-2">
+            <li class="nav-item"> <a class="nav-link px-2 active" aria-current="page">Kredi Kartı</a> </li>
+        </ul>
+        <form [formGroup]="paymentForm" (onSubmit)="onSubmit">
+        <div class="form-group" action="">
+            
+            <div class="row">
+                
+                <div  class="col-12">
+                    <div class="d-flex flex-column px-md-5 px-4 mb-4"> <span>Kredi Kartı</span>
+                        <div class="form-group" class="inputWithIcon"> <input class="form-control" type="text" name="cardNumber" formControlName="cardNumber" placeholder="Kredi Kartı Numarası" required> <span class=""> <img src="https://www.freepnglogos.com/uploads/mastercard-png/mastercard-logo-logok-15.png" alt=""></span> </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="d-flex flex-column ps-md-5 px-md-0 px-4 mb-4"> <span>Valid Dates<span class="ps-1">Date</span></span>
+                        <div class="form-group" class="input-group">
+                            <input type="number" placeholder="05" name="" formControlName="expMonth" class="form-control" required>
+                            <input type="number" placeholder="22" name="" formControlName="expYear" class="form-control" required> 
+                            <span class="fas fa-calendar-alt"></span> 
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="d-flex flex-column pe-md-5 px-md-0 px-4 mb-4"> <span>CVV</span>
+                        <div class="form-group" class="inputWithIcon"> <input type="text" formControlName="cvv"  class="form-control" placeholder="123" required> <span class="fas fa-lock"></span> </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="d-flex flex-column px-md-5 px-4 mb-4"> <span>Full Name</span>
+                        <div class="form-group" class="inputWithIcon"> <input formControlName="fullName" class="form-control text-uppercase" type="text" placeholder="Adınız Soyadınız" required> <span class="far fa-user"></span> </div>
+                    </div>
+                </div>
+                <div class="col-12 px-md-5 px-4 mt-3">
+                    <button class="btn btn-primary w-100" [disabled]="!paymentForm.valid" (click)="addRental()">Ödemeyi Tamamla {{total | currency:"₺"}}</button>
+                </div>
+                <div class="col-12 px-md-5 px-4 mt-3">
+                    <button class="btn btn-danger w-100" routerLink="/cars" >İptal Et ve Anasayfaya Git</button>
+                </div>
+            </div>
+        </div>
+        </form>
+    </div>
+</div>

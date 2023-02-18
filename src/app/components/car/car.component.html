@@ -4,8 +4,21 @@
     </div>
 </div>
 
+<div class="mb-3" *ngIf ="dataLoaded==true">
+    <label for="filterText"  class="form-label">Model Arama:</label>
+    <input type="text" [(ngModel)]="filterText" class="form-control" id="filterText" placeholder="arabanın modelini girin">
+</div>
+ <div *ngIf="filterText.length>2" class = "alert alert-primary">
+    {{filterText}} aradınız
+ </div> 
+
+ <div>
+     <app-car-filter *ngIf ="dataLoaded==true"></app-car-filter>
+ </div>
+
+
 <table *ngIf ="dataLoaded==true" class="table">
-    <thead>
+    <!-- <thead>
         <tr>
             <th>Id</th>
             <th>Arabanın Markası</th>
@@ -13,12 +26,55 @@
             <th>Arabanın rengi</th>
             <th>Günlük Fiyat</th>
         </tr>
-    </thead>
-    <tr *ngFor = "let car of cars">
+    </thead> -->
+
+
+    <!-- aa -->
+    <tbody>
+        <div class="album py-3 px-0" style="width: 68rem;">
+            <div class="row">
+                <div class="card mx-3 p-3 mb-4 box-shadow" *ngFor="let car of cars | filterPipe:filterText" (click) ="setCurrentCar(car)" routerLink = "/cardetails/car/{{car.carId}}" style="width: 18rem;">
+                    <img src="https://localhost:44337/Uploads/Images/{{car.carImage[0].imagePath}}" class="card-img-top" alt="..." width="500"
+                    height="130">
+                    <div class="card-body">
+                        <h2 class="card-title">{{ car.carName }}</h2>
+                    </div>
+                      <!-- <h5 class="card-title">Card title</h5>
+                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      <a href="#" class="btn btn-primary">Go somewhere</a> -->
+                    <ul>
+                    <li class="list-group-item">Marka: {{car.brandName}}</li>
+                    <li class="list-group-item">Renk: {{car.colorName}}</li>
+                    <li class="list-group-item">Günlük Fiyat: {{car.dailyPrice | currency:"₺"}} </li>
+                    
+                    </ul>
+                    <div class="d-flex justify-content-end align-items-center">
+                    <div class="btn-group" class="d-grid gap-2 col-6 mx-auto">
+                        <button type="button" class="btn btn-info" [class]="getCurrentCarClass(car)">Detay</button>
+                    </div>
+                    <br>
+                    </div>
+                  </div>
+            </div>
+        </div>
+    </tbody>
+    
+    
+    
+
+      <!-- aa -->
+
+    <!-- <tbody>
+        <tr (click) ="setCurrentCar(car)" *ngFor = "let car of cars" 
+        routerLink = "/cardetails/car/{{car.carId}}"    >
         <td>{{car.carId}}</td>
         <td>{{car.brandName}}</td>
         <td>{{car.carName}}</td>
         <td>{{car.colorName}}</td>
         <td>{{car.dailyPrice}}</td>
-    </tr>
+        <td><button type="button" class="btn btn-info" [class]="getCurrentCarClass(car)">Detay</button></td>
+        </tr>
+    </tbody> -->
+    
+    <h5 *ngIf ="currentCar">{{currentCar.carName}} seçildi</h5>
 </table>

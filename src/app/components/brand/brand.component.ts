@@ -12,6 +12,7 @@ export class BrandComponent implements OnInit {
 
   brands:Brand[] = [];
   currentBrand?: Brand;
+  filterText="";
 
   constructor(private brandService:BrandService) { }
 
@@ -22,6 +23,7 @@ export class BrandComponent implements OnInit {
   getBrands(){
     this.brandService.getBrands().subscribe((response)=>{
       this.brands = response.data
+      
     })
   }
 

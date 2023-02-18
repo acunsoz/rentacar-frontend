@@ -1,10 +1,17 @@
 <ul class="list-group">
-  <li class="list-group-item "><strong>Markalar</strong></li>
+  <li class="list-group-item ">
+    <strong>Markalar</strong> 
+  </li>
+</ul>
+<ul class="list-group">
+  <li class="list-group-item">
+    <input type="text"  [(ngModel)]="filterText" class="form-control" id="filterText" placeholder="arabanın markası">
+  </li>
 </ul>
 <ul class="list-group">
   <li (click)="setCurrentClearBrand()" [class]="getAllBrandClass()"routerLink ="/cars">Tüm Markalar</li>
     <li (click)="setCurrentBrand(brand)"  
-    routerLink = "/cars/brand/{{brand.id}}" *ngFor ="let brand of brands" 
+    routerLink = "/cars/brand/{{brand.id}}" *ngFor ="let brand of brands | brandFilterPipe:filterText" 
     [class]="getCurrentBrandClass(brand)">{{brand.name}}</li>
 </ul>
 

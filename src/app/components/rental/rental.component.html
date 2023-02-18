@@ -2,6 +2,7 @@
     <thead>
         <tr>
             <th>Id</th>
+            <th>Car Id</th>
             <th>Kiralanan Marka</th>
             <th>Kiralanan Adi</th>
             <th>Müsterinin ismi</th>
@@ -12,6 +13,7 @@
     </thead>
     <tr *ngFor = "let rental of rentals">
         <td>{{rental.id}}</td>
+        <td>{{rental.carId}}</td>
         <td>{{rental.carName}}</td>
         <td>{{rental.firstName}}</td>
         <td>{{rental.lastName}}</td>
